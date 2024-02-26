@@ -28,18 +28,15 @@ from keras.models import Sequential, load_model
 from keras.layers import Dense, LSTM
 from keras.callbacks import EarlyStopping
 from keras.optimizers import Adam
-# from keras.utils.vis_utils import plot_model
 import keras.backend as K
 
 
 # Managing data ##########################################################################################
 df = pd.read_csv("./MSFT Stock History Jan 30, 1990 - Jan 30, 2024.csv", header=None, na_values=['null'],parse_dates=True, infer_datetime_format=True, index_col=[0], names= ["Date","Open","High","Low","Close","Adj Close","Volume"] )
-# df['Date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d')
 
 
 startDate = '2019-01-30'
 endDate = '2024-01-30'
-# print(df.head())
 # filters data based on dates
 stockData = df[ (df.index > startDate) & (df.index < endDate) ]
 
@@ -60,6 +57,7 @@ stockData = stockData[ (stockData.index > "1990-01-01")].copy()
 
 
 # Training the ML Model #####################################################################################################
+# Citation: https://www.youtube.com/watch?v=1O_BenficgE
 
     #Deals with data for ML Model ###########################################################################################
 # create a new dataframe with only the 'close column'
